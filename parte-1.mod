@@ -14,7 +14,7 @@ param PRIORIDADES {k in CAJAS};
 var posicion_caja {k in CAJAS, i in FILAS, j in COLUMNAS} binary;
 
 /*F. Obj*/
-minimize coste_medio: sum{i in FILAS}sum{j in COLUMNAS}sum{i+1 in FILAS}sum{k in CAJAS}posicion_caja[k,i,j]*PRIORIDADES[k];
+minimize coste_medio: (sum{i in FILAS}sum{j in COLUMNAS}sum{i_prima in (i+1)..LADO}sum{k in CAJAS}posicion_caja[k,i_prima,j]*PRIORIDADES[k])/NUM_CAJAS;
 
 /*Restriciones*/
 /*Las cajas se deben disponer de un único plano sobre el pallet (no repeticiones)*/
